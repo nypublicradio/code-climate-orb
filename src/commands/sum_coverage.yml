@@ -1,4 +1,3 @@
-version: 2.1
 description: Combine (sum) multiple pre-formatted coverage payloads into one.
 parameters:
     cc_test_reporter_path:

@@ -1,4 +1,3 @@
-version: 2.1
 description: Locate, parse, and re-format supported coverage sources.
 parameters:
     additional_flags:
