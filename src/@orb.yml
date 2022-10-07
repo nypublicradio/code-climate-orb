@@ -4,3 +4,6 @@ description: >
   CircleCI Orb for Code Climate. Provides commands for installing the Code
   Climate test reporter, formatting coverage reports, combining (summing) them,
   and uploading them to Code Climate.
+
+display:
+  source_url: "https://github.com/nypublicradio/code-climate-orb"
