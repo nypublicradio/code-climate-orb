@@ -18,5 +18,10 @@ parameters:
 steps:
     - run:
           environment:
-          command: <<parameters.cc_test_reporter_path>>/cc-test-reporter sum-coverage <<parameters.input>> --parts <<parameters.parts>> --output "<<parameters.output>>"
+              REPORTER: <<parameters.cc_test_reporter_path>>/cc-test-reporter
+              INPUT: <<parameters.input>>
+              OUTPUT: <<parameters.output>>
+              PARTS: <<parameters.parts>>
+          command: |
+              "$REPORTER" sum-coverage "$INPUT" -p "$PARTS" -o "$OUTPUT"
           name: Combining coverage reports
