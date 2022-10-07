@@ -10,5 +10,9 @@ parameters:
         type: string
 steps:
     - run:
-          command: <<parameters.cc_test_reporter_path>>/cc-test-reporter upload-coverage --input "<<parameters.input>>"
+          environment:
+              REPORTER: <<parameters.cc_test_reporter_path>>/cc-test-reporter
+              INPUT: <<parameters.input>>
+          command: |
+              "$REPORTER" upload-coverage -i "$INPUT"
           name: Uploading coverage report
