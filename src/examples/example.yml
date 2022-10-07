@@ -1,0 +1,24 @@
+description: Simple example of a CircleCI configuration using the code-climate orb
+# Provide a use-case based example for using this orb.
+# Everything in the `usage` section will be displayed in the orb registry.
+# Comments are not retained.
+usage:
+  version: 2.1
+  orbs:
+    code-climate: nypr/code-climate@0.1
+  jobs:
+    build:
+      docker:
+        - image: cimg/python:3.10
+      steps:
+        - checkout
+        - run: test # do something that generates a coverage report, e.g., pytest
+        - code-climate/install
+        - code-climate/format_coverage:
+            coverage_file: "coverage.xml" # path to the input coverage report
+            input_type: coverage.py
+        - code-climate/upload_coverage
+  workflows:
+    example-test-and-report:
+      jobs:
+        - build
