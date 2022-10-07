@@ -1,0 +1,15 @@
+version: 2.1
+description: Upload pre-formatted coverage payloads to Code Climate servers
+parameters:
+    cc_test_reporter_path:
+        default: /usr/local/bin
+        description: Path where Code Climate test reporter binary is installed
+        type: string
+    input:
+        default: coverage/codeclimate.json
+        description: Input path
+        type: string
+steps:
+    - run:
+        command: <<parameters.cc_test_reporter_path>>/cc-test-reporter upload-coverage --input "<<parameters.input>>"
+        name: Uploading coverage report

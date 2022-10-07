@@ -1,0 +1,23 @@
+version: 2.1
+description: Combine (sum) multiple pre-formatted coverage payloads into one.
+parameters:
+    cc_test_reporter_path:
+        default: /usr/local/bin
+        description: Path where Code Climate test reporter binary is installed
+        type: string
+    input:
+        description: File glob of the files to combine
+        type: string
+    output:
+        default: coverage/codeclimate.json
+        description: Output path
+        type: string
+    parts:
+        default: 1
+        description: The total number of parts to sum
+        type: integer
+steps:
+    - run:
+        environment:
+        command: <<parameters.cc_test_reporter_path>>/cc-test-reporter sum-coverage <<parameters.input>> --parts <<parameters.parts>> --output "<<parameters.output>>"
+        name: Combining coverage reports

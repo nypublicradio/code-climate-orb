@@ -1,0 +1,35 @@
+version: 2.1
+description: Locate, parse, and re-format supported coverage sources.
+parameters:
+    additional_flags:
+        default: ""
+        description: Additional flags for the format-coverage command (e.g., "--prefix=v3")
+        type: string
+    cc_test_reporter_path:
+        default: /usr/local/bin
+        description: Path where Code Climate test reporter binary is installed
+        type: string
+    coverage_file:
+        description: Coverage file to format
+        type: string
+    input_type:
+        description: Type of input source
+        enum:
+            - clover
+            - cobertura
+            - coverage.py
+            - excoveralls
+            - gcov
+            - gocov
+            - jacoco
+            - lcov
+            - simplecov
+        type: enum
+    output:
+        default: "coverage/codeclimate.json"
+        description: Output path
+        type: string
+steps:
+    - run:
+        command: <<parameters.cc_test_reporter_path>>/cc-test-reporter format-coverage <<# parameters.additional_flags>> "<<parameters.additional_flags>>" <</ parameters.additional_flags>> "<<parameters.coverage_file>>" --input-type <<parameters.input_type>> --output "<<parameters.output>>"
+        name: Formatting the coverage report
