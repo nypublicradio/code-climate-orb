@@ -30,8 +30,11 @@ parameters:
         type: string
 steps:
     - run:
-          command: |
-              <<parameters.cc_test_reporter_path>>/cc-test-reporter format-coverage \
-                <<# parameters.additional_flags>> "<<parameters.additional_flags>>" <</ parameters.additional_flags>> \
-                "<<parameters.coverage_file>>" --input-type <<parameters.input_type>> --output "<<parameters.output>>"
-          name: Formatting the coverage report
+          environment:
+              CC_TEST_REPORTER_PATH: <<parameters.cc_test_reporter_path>>
+              ADDITIONAL_FLAGS: <<parameters.additional_flags>>
+              COVERAGE_FILE: <<parameters.coverage_file>>
+              INPUT_TYPE: <<parameters.input_type>>
+              OUTPUT_FILE: <<parameters.output>>
+          name: Report formatting
+          command: <<include(scripts/format.sh)>>

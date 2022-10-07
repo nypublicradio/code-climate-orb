@@ -14,10 +14,10 @@ usage:
         - checkout
         - run: test # do something that generates a coverage report, e.g., pytest
         - code-climate/install
-        - code-climate/format_coverage:
+        - code-climate/format:
             coverage_file: "coverage.xml" # path to the input coverage report
             input_type: coverage.py
-        - code-climate/upload_coverage
+        - code-climate/upload
   workflows:
     example-test-and-report:
       jobs:
