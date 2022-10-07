@@ -30,5 +30,8 @@ parameters:
         type: string
 steps:
     - run:
-        command: <<parameters.cc_test_reporter_path>>/cc-test-reporter format-coverage <<# parameters.additional_flags>> "<<parameters.additional_flags>>" <</ parameters.additional_flags>> "<<parameters.coverage_file>>" --input-type <<parameters.input_type>> --output "<<parameters.output>>"
-        name: Formatting the coverage report
+          command: |
+              <<parameters.cc_test_reporter_path>>/cc-test-reporter format-coverage \
+                <<# parameters.additional_flags>> "<<parameters.additional_flags>>" <</ parameters.additional_flags>> \
+                "<<parameters.coverage_file>>" --input-type <<parameters.input_type>> --output "<<parameters.output>>"
+          name: Formatting the coverage report

@@ -17,18 +17,18 @@ parameters:
     # TODO sha256sum validation
 steps:
     - run:
-        command: |
-            if [[ $EUID == 0 ]]; then export SUDO=""; else # Check if we are root
-              export SUDO="sudo"; # If not, use sudo
-            fi
-            if [[ $(command -v cc-test-reporter) == "" ]]; then
-              echo "Installing Code Climate test reporter..."
-              $SUDO mkdir -p <<parameters.cc_test_reporter_path>>
-              $SUDO test -f <<parameters.cc_test_reporter_path>>/cc-test-reporter \
-                || $SUDO curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-<<parameters.version>>-<<parameters.architecture>>> \
-                <<parameters.cc_test_reporter_path>>/cc-test-reporter
-              $SUDO chmod +x <<parameters.cc_test_reporter_path>>/cc-test-reporter
-            else
-              echo "Test reporter is already installed."
-            fi
-        name: Downloading Code Climate test reporter
+          command: |
+              if [[ $EUID == 0 ]]; then export SUDO=""; else # Check if we are root
+                export SUDO="sudo"; # If not, use sudo
+              fi
+              if [[ $(command -v cc-test-reporter) == "" ]]; then
+                echo "Installing Code Climate test reporter..."
+                $SUDO mkdir -p <<parameters.cc_test_reporter_path>>
+                $SUDO test -f <<parameters.cc_test_reporter_path>>/cc-test-reporter \
+                  || $SUDO curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-<<parameters.version>>-<<parameters.architecture>>> \
+                  <<parameters.cc_test_reporter_path>>/cc-test-reporter
+                $SUDO chmod +x <<parameters.cc_test_reporter_path>>/cc-test-reporter
+              else
+                echo "Test reporter is already installed."
+              fi
+          name: Downloading Code Climate test reporter
