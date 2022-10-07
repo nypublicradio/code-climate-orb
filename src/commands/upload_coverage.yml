@@ -1,4 +1,3 @@
-version: 2.1
 description: Upload pre-formatted coverage payloads to Code Climate servers
 parameters:
     cc_test_reporter_path:

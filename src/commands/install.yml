@@ -1,4 +1,3 @@
-version: 2.1
 description: Install the Code Climate test reporter.
 parameters:
     cc_test_reporter_path:
